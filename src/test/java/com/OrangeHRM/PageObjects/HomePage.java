@@ -15,6 +15,8 @@ public class HomePage {
 	private By messageBy = By.xpath("//a[@id='welcome']");
 	private By welcomeMenuBy = By.xpath("//div[@id='welcome-menu']");
 	private By dashboardTextElementBy = By.xpath("//h1[contains(text(),'Dashboard')]");
+	private By welcomeModalBoxBy = By.id("welcome");
+	private By logoutLinkBy = By.xpath("//a[contains(text(),'Logout')]");
 	
 	
 	//constructor
@@ -37,6 +39,23 @@ public class HomePage {
 	  
 	  public WebElement getDashboardTextElement() {
 		  return driver.findElement(dashboardTextElementBy);
+	  }
+	  
+	  public WebElement getwelcomeModalBox() {
+		  return driver.findElement(welcomeModalBoxBy);
+	  }
+	  
+	  public void clickOngetwelcomeModalBox() {
+		  getwelcomeModalBox().click();
+	  }
+	  
+	  public WebElement LogoutLink() {
+		  return driver.findElement(logoutLinkBy);
+		  
+	  }
+	  
+	  public void clickOnLogoutLink() {
+		  LogoutLink().click();
 	  }
 	  
 	  public HomePage manageProfile() {

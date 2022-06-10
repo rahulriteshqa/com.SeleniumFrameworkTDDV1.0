@@ -11,36 +11,47 @@ import TestBase1.TestBase;
 
 public class TestLoginPage extends TestBase {
 
-	@DataProvider(name="LoginData")
+	@DataProvider(name = "LoginData")
 	public Object[][] getLoginCredentials() {
 
-		return new Object[][] {
-			   { "Admin", "admin123" },
-			   //{ "Anne", "admin1234"},
-			 };
-			}
-
-	
+		return new Object[][] { { "Admin", "admin123", "valid" }, { "Anne", "admin1234", "invalid" }, };
+	}
 
 	/***
 	 * Tests login feature
-	 * @throws InterruptedException 
+	 * 
+	 * @throws InterruptedException
 	 */
-	
 
-		@Test(description="Verify the login functionality", dataProvider="LoginData")
-		public void testLogin(String userName, String password) throws InterruptedException {
-			//setUpApp();
-			SignInPage signInPage = new SignInPage(driver);
-			HomePage homePage = signInPage.loginValidUser(userName,password);
-			// assertThat(homePage.getMessageText(), is("Welcome Mayra"));
-			//Thread.sleep(5000);
-			Boolean res= homePage.getDashboardTextElement().isDisplayed();
+	@Test(description = "Verify the login functionality", dataProvider = "LoginData")
+	public void testLogin(String userName, String password, String exp) throws InterruptedException {
+
+		SignInPage signInPage = new SignInPage(driver);
+		HomePage homePage = signInPage.loginValidUser(userName, password);
+		Boolean res = homePage.getDashboardTextElement().isDisplayed();
+
+		if (exp.equals("valid")) {
+
+			if (res.equals(true)) {
+				homePage.clickOngetwelcomeModalBox();
+				homePage.clickOnLogoutLink();
+				Assert.assertTrue(true);
+
+			} else {
+				Assert.assertTrue(false);
+			}
+		} else if(exp.equals("invalid")){
 			
-			Assert.assertTrue(res);
-			//tearDownApp();
+			if(res.equals(true)) {
+				homePage.clickOngetwelcomeModalBox();
+				homePage.clickOnLogoutLink();
+				Assert.assertTrue(false);
+			}else {
+				Assert.assertTrue(true);
+			}
+
 		}
 
 	}
 
-
+}
