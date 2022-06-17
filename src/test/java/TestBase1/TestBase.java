@@ -1,11 +1,15 @@
 package TestBase1;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+
+import com.OrangeHRM.Utilities.DataHandlersPropertiesFile;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
@@ -14,7 +18,7 @@ public class TestBase {
 	
 	@SuppressWarnings("deprecation")
 	@BeforeClass
-	public void setUpApp() {
+	public void setUpApp() throws IOException {
 		
 		//Reporter.log("=====Browser Session Started=====", true);
 		WebDriverManager.chromedriver().setup();
@@ -22,7 +26,20 @@ public class TestBase {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		//driver.get("https://www.ebay.com/");
-		driver.get("https://opensource-demo.orangehrmlive.com/");
+		String configFilePath = System.getProperty("user.dir")+"\\Configuration\\config.properties";
+		System.out.println(configFilePath);
+		//String path = "D:\\IDE2020 projects\\com.SeleniumFrameworkTDDV1.0\\Configuration\\config.properties";
+		String AppURL = DataHandlersPropertiesFile.readDataFromPropertiesFile(configFilePath,"url");
+		
+		
+		/*
+		 * DataHandlersPropertiesFile.writeDataToPropertiesFile(System.getProperty(
+		 * "user.dir")+"\\Configuration\\writeToconfig.properties", "TCID",
+		 * "My First TC", "Execution");
+		 */
+		
+		driver.get(AppURL);
+		
 		
 	}
 	
