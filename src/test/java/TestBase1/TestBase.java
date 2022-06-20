@@ -15,6 +15,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class TestBase {
 
 	public WebDriver driver;
+	public String  configFilePath = System.getProperty("user.dir")+"\\Configuration\\config.properties";
 	
 	@SuppressWarnings("deprecation")
 	@BeforeClass
@@ -26,7 +27,7 @@ public class TestBase {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		//driver.get("https://www.ebay.com/");
-		String configFilePath = System.getProperty("user.dir")+"\\Configuration\\config.properties";
+		
 		System.out.println(configFilePath);
 		//String path = "D:\\IDE2020 projects\\com.SeleniumFrameworkTDDV1.0\\Configuration\\config.properties";
 		String AppURL = DataHandlersPropertiesFile.readDataFromPropertiesFile(configFilePath,"url");

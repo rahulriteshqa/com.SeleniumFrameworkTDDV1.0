@@ -6,7 +6,7 @@
       <class name="com.OrangeHRM.TestCases.TestLoginPage">
         <methods>
           <include name="setUpApp"/>
-          <include name="testLogin" invocation-numbers="1"/>
+          <include name="testLogin" invocation-numbers="0 1"/>
           <include name="tearDownApp"/>
         </methods>
       </class> <!-- com.OrangeHRM.TestCases.TestLoginPage -->

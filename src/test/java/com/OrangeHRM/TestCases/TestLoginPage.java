@@ -1,15 +1,29 @@
 package com.OrangeHRM.TestCases;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.OrangeHRM.PageObjects.HomePage;
 import com.OrangeHRM.PageObjects.SignInPage;
+import com.OrangeHRM.Utilities.DataHandlersExcel;
+import com.OrangeHRM.Utilities.DataHandlersPropertiesFile;
 
 import TestBase1.TestBase;
 
 public class TestLoginPage extends TestBase {
+
+	// SignInPage signInPage;
+	// HomePage homePage;
+
+	// String testDataSheetName=
+	// DataHandlersPropertiesFile.readDataFromPropertiesFile(configFilePath,
+	// "DataSheetName");
 
 	@DataProvider(name = "LoginData")
 	public Object[][] getLoginCredentials() {
@@ -35,24 +49,50 @@ public class TestLoginPage extends TestBase {
 			if (res.equals(true)) {
 				homePage.clickOngetwelcomeModalBox();
 				homePage.clickOnLogoutLink();
-				Assert.assertTrue(true);
+				AssertJUnit.assertTrue(true);
 
 			} else {
-				Assert.assertTrue(false);
+				AssertJUnit.assertTrue(false);
 			}
-		} else if(exp.equals("invalid")){
-			
-			if(res.equals(true)) {
+		} else if (exp.equals("invalid")) {
+
+			if (res.equals(true)) {
 				homePage.clickOngetwelcomeModalBox();
 				homePage.clickOnLogoutLink();
-				Assert.assertTrue(false);
-			}else {
-				Assert.assertTrue(true);
+				AssertJUnit.assertTrue(false);
+			} else {
+				AssertJUnit.assertTrue(true);
 			}
 
 		}
 
 	}
 
-	
+	@Test(description = "Verify test functionality using Data Driven by Excel")
+	public void testLoginUsingExcel() throws Exception, IOException {
+		
+		String dataFilePath = System.getProperty("user.dir") + "\\TestData\\data.xlsx";
+		System.out.println(dataFilePath);
+
+		String username1 = DataHandlersExcel.readExcelData(dataFilePath,0, 1, 0);
+		System.out.println(username1);
+		
+		String password1 = DataHandlersExcel.readExcelData(dataFilePath,0, 1, 1);
+		System.out.println(password1);
+
+		SignInPage signInPage = new SignInPage(driver);
+		HomePage homePage = signInPage.loginValidUser(username1, password1);
+		Boolean res = homePage.getDashboardTextElement().isDisplayed();
+		if (res.equals(true)) {
+			homePage.clickOngetwelcomeModalBox();
+			homePage.clickOnLogoutLink();
+			AssertJUnit.assertTrue(true);
+			DataHandlersExcel.writeDataToExcel(dataFilePath, 1, "Verify test functionality using Data Driven by Excel - TestPassed");
+
+		} else {
+			AssertJUnit.assertTrue(false);
+			DataHandlersExcel.writeDataToExcel(dataFilePath, 1, "Verify test functionality using Data Driven by Excel - TestFailed");
+		}
+	}
+
 }
