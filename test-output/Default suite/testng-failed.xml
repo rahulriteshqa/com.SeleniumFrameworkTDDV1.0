@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.OrangeHRM.TestCases.TestLoginPage">
+      <class name="SeleniumPractice.AllBrowserLaunch">
         <methods>
-          <include name="setUpApp"/>
-          <include name="testLogin" invocation-numbers="0 1"/>
-          <include name="tearDownApp"/>
+          <include name="basicActions"/>
+          <include name="openBrowser"/>
         </methods>
-      </class> <!-- com.OrangeHRM.TestCases.TestLoginPage -->
+      </class> <!-- SeleniumPractice.AllBrowserLaunch -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

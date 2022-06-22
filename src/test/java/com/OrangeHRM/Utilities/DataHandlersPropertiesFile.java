@@ -22,8 +22,8 @@ public class DataHandlersPropertiesFile {
 		fis = new FileInputStream(f);
 		prop = new Properties();
 		prop.load(fis);
-		String data = prop.get(key).toString();
-		System.out.println("url data from config file"+data);
+		String data = (String) prop.get(key);
+		System.out.println("data from config file" +data);
 		return data;
 	}
 	

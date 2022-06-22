@@ -1,8 +1,12 @@
 package com.OrangeHRM.PageObjects;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Page Object encapsulates the Home Page
@@ -28,6 +32,10 @@ public class HomePage {
 	    }
 	  }
 
+	public WebElement waitForElementTobeClickable(long time, WebElement locator) {
+		return new WebDriverWait(driver, Duration.ofSeconds(time))
+				.until(ExpectedConditions.elementToBeClickable(locator));
+	}
 	/**
 	    * Get message (h1 tag)
 	    *
