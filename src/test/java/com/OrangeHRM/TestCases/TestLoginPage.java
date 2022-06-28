@@ -40,7 +40,9 @@ public class TestLoginPage extends TestBase {
 	@Test(description = "Verify the login functionality", dataProvider = "LoginData")
 	public void testLogin(String userName, String password, String exp) throws InterruptedException {
 
+		
 		SignInPage signInPage = new SignInPage(driver);
+		demoLogger.debug("perform the signin operation");
 		HomePage homePage = signInPage.loginValidUser(userName, password);
 		Boolean res = homePage.getDashboardTextElement().isDisplayed();
 

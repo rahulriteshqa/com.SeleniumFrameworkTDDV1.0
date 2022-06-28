@@ -1,0 +1,9 @@
+23:34:49.359 [main] DEBUG org.apache.poi.openxml4j.opc.PackageRelationshipCollection - Parsing relationship: /_rels/.rels
+23:34:49.432 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctsheetdimensiond310type
+23:34:49.436 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle stref90a2type
+23:34:49.477 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle propertiesee84doctype
+23:34:49.481 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctproperties3f10type
+23:34:49.492 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle properties288cdoctype
+23:34:49.495 [main] TRACE org.apache.xmlbeans.impl.common.XBeanDebug - Resolving type for handle ctproperties2c18type
+23:34:49.519 [main] DEBUG org.apache.poi.openxml4j.opc.ZipPackage - Save content types part
+23:34:49.697 [main] DEBUG org.apache.poi.openxml4j.opc.ZipPackage - Save package relationships

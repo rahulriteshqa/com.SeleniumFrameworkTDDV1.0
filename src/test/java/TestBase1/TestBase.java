@@ -1,4 +1,5 @@
 package TestBase1;
+import org.apache.logging.log4j.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
 
+	public static Logger demoLogger = LogManager.getLogger(TestBase.class.getName());
 	public WebDriver driver;
 	public String  configFilePath = System.getProperty("user.dir")+"\\Configuration\\config.properties";
 	
@@ -25,31 +27,38 @@ public class TestBase {
 	@BeforeClass
 	public void setUpApp() throws IOException {
 		
+		demoLogger.info("fetching the browser type from config.properties file");
 		String browserName = DataHandlersPropertiesFile.readDataFromPropertiesFile(propertiesFilePath,"browser");
 		
 		if(browserName.equalsIgnoreCase("chrome")) {
+			demoLogger.info("initializing the chrome driver");
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();	
 		}
 		
 		else if(browserName.equalsIgnoreCase("firefox")) {
+			demoLogger.info("initializing the firefox driver");
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
 		else if(browserName.equalsIgnoreCase("edge")) {
+			demoLogger.info("initializing the edge driver");
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		}
 		else {
-			System.out.println("Browser Name is not passed");
+			demoLogger.info("No browser type is fetched from config.properties file");
 		}
 		
 		driver.manage().window().maximize();
+		demoLogger.debug("Maximizing the browser");
 		//Integer  = Integer.getInteger(DataHandlersPropertiesFile.readDataFromPropertiesFile(propertiesFilePath,"timeout"));
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		demoLogger.debug("setting the implicit wait");
 		//driver.get("https://www.ebay.com/");
 		
-		System.out.println(propertiesFilePath);
+		demoLogger.debug(propertiesFilePath);
+		//System.out.println(propertiesFilePath);
 		//String path = "D:\\IDE2020 projects\\com.SeleniumFrameworkTDDV1.0\\Configuration\\config.properties";
 		String AppURL = DataHandlersPropertiesFile.readDataFromPropertiesFile(propertiesFilePath,"url");
 		
@@ -61,6 +70,7 @@ public class TestBase {
 		 */
 		
 		driver.get(AppURL);
+		demoLogger.debug("opening the website for testing on the browser");
 		
 		
 	}
@@ -75,6 +85,7 @@ public class TestBase {
 	@AfterClass
 	public void tearDownApp() {
 		driver.quit();
+		demoLogger.debug("closing the browser");
 		//Reporter.log("=====Browser Session End=====", true);
 	}
 }

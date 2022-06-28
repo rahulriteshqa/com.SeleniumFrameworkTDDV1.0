@@ -1,0 +1,10 @@
+23:34:16.709 [main] INFO  TestBase1.TestBase - fetching the browser type from config.properties file
+23:34:16.716 [main] INFO  TestBase1.TestBase - initializing the chrome driver
+23:34:17.226 [main] DEBUG io.netty.util.internal.logging.InternalLoggerFactory - Using Log4J2 as the default logging framework
+23:34:17.231 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+23:34:17.231 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.targetRecords: 4
+23:34:17.234 [main] DEBUG io.netty.util.ResourceLeakDetectorFactory - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@26a4551a
+23:34:17.252 [main] DEBUG io.netty.util.internal.PlatformDependent0 - -Dio.netty.noUnsafe: false
+23:34:17.253 [main] DEBUG io.netty.util.internal.PlatformDependent0 - Java version: 11
+23:34:17.254 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+23:34:17.255 [main] DEBUG io.netty.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
